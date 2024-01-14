@@ -1,10 +1,16 @@
 ﻿<Properties StartupConfiguration="{73216B27-332D-4119-81DB-E1F3FE77B7E6}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.RunGroop FirstBuild="True" PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Address.cs">
+  <MonoDevelop.Ide.ItemProperties.RunGroop PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Race.cs">
     <Files>
-      <File FileName="Models/Address.cs" Line="8" Column="20" />
+      <File FileName="Models/Address.cs" Line="8" Column="13" />
+      <File FileName="Models/User.cs" Line="10" Column="33" />
+      <File FileName="Models/City.cs" Line="12" Column="43" />
+      <File FileName="Models/Club.cs" Line="11" Column="22" />
+      <File FileName="Data/Enum/ClubCategory.cs" Line="10" Column="12" />
+      <File FileName="Models/Race.cs" Line="24" Column="16" />
+      <File FileName="Models/State.cs" Line="8" Column="46" />
+      <File FileName="Data/Enum/RaceCategory.cs" Line="10" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +18,7 @@
           <Node name="RunGroop" expanded="True">
             <Node name="RunGroop">
               <Node name="Models">
-                <Node name="Address.cs" selected="True" />
+                <Node name="Race.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -21,6 +27,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
