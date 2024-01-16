@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RunGroop.Data;
+using RunGroop.Interface;
 using RunGroop.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,21 +13,21 @@ namespace RunGroop.Controllers
 {
     public class RaceController : Controller
     {
-        private readonly ApplicationDbContext _applicationDbContext;
-        public RaceController(ApplicationDbContext applicationDbContext)
+        private readonly IRaceInterface _raceInterface;
+        public RaceController(IRaceInterface raceInterface)
         {
-            _applicationDbContext = applicationDbContext;
+            _raceInterface = raceInterface;
         }
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var races = _applicationDbContext.Races.ToList();
+            var races = await _raceInterface.GetAll();
             return View(races);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            Race race = _applicationDbContext.Races.FirstOrDefault(r => r.Id == id);
+            Race race = await _raceInterface.GetByIdAsync(id);
             return View(race);
         }
     }

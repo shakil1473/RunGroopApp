@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RunGroop.Data;
+using RunGroop.Interface;
+using RunGroop.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IClubInterface, ClubRepository>();
+builder.Services.AddScoped<IRaceInterface, RaceRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(applicationDbContextOptions =>
 {
     applicationDbContextOptions.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
