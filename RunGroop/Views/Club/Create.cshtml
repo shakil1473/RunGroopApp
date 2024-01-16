@@ -1,0 +1,22 @@
+﻿@using RunGroop.Data.Enum
+@model Club
+<form method="post" asp-action="Create"> <!--Don't forget to add the method as post'-->
+    <div class="form-group">
+        <label asp-for="Title">Club Title</label>
+        <input asp-for="Title" class="form-control" placeholder="Enter club title">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Club Desc</label>
+        <input asp-for="Description" class="form-control" placeholder="Enter club Description">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Image path</label>
+        <select asp-for="Image" asp-items="@Html.GetEnumSelectList<ClubCategory>()" class="form-control form-control-lg">
+            <option>--Select--</option>
+        </select>
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

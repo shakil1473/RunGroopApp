@@ -37,6 +37,23 @@ namespace RunGroop.Controllers
 
             return View(club);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Club club)
+        {
+            if(club.Title == null || !ModelState.IsValid)
+            {
+                return View(club);
+            }
+
+            _clubInterface.Add(club);
+            return RedirectToAction("Index");
+        }
     }
 }
 
