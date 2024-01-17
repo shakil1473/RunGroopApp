@@ -36,6 +36,11 @@ namespace RunGroop.Repository
             return await _applicationDbContext.Races.FirstOrDefaultAsync(r => r.Id == id);
         }
 
+        public async Task<Race> GetByIdAsyncNoTracking(int id)
+        {
+            return await _applicationDbContext.Races.AsNoTracking().FirstOrDefaultAsync(r => r.Id == id);
+        }
+
         public Task<IEnumerable<Race>> GetClubsByCity(string city)
         {
             throw new NotImplementedException();

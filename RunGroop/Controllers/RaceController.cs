@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using RunGroop.Data;
 using RunGroop.Interface;
 using RunGroop.Models;
+using RunGroop.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,6 +44,74 @@ namespace RunGroop.Controllers
                 return View();
 
             _raceInterface.Add(race);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var race = await _raceInterface.GetByIdAsync(id);
+            if (race == null)
+                return View("Error");
+
+            var raceViewMode = new EditRaceViewModel
+            {
+                Title = race.Title,
+                Description = race.Description,
+                Image = race.Image,
+                StartTime = race.StartTime,
+                EntryFee = race.EntryFee,
+                Website = race.Website,
+                Twitter = race.Twitter,
+                Facebook = race.Facebook,
+                Contact = race.Contact
+            };
+
+            return View(raceViewMode);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditRaceViewModel raceViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit race");
+                return View("Edit", raceViewModel);
+            }
+
+            var userClub = await _raceInterface.GetByIdAsyncNoTracking(id);
+            if (userClub != null)
+                try
+                {
+                    //delete photos
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Could not delete photo");
+                    return View(raceViewModel);
+                }
+
+            var photosResult = true;
+
+            var race = new Race
+            {
+                Id = id,
+                Title = raceViewModel.Title,
+                Description = raceViewModel.Description,
+                Image = raceViewModel.Image,
+                StartTime = raceViewModel.StartTime,
+                EntryFee = raceViewModel.EntryFee,
+                Website = raceViewModel.Website,
+                Twitter = raceViewModel.Twitter,
+                Facebook = raceViewModel.Facebook,
+                Contact = raceViewModel.Contact
+            };
+
+            if (!_raceInterface.Update(race))
+            {
+                ModelState.AddModelError("", "Failed to update race");
+                return View("Edit", raceViewModel);
+            }
+
             return RedirectToAction("Index");
         }
     }
